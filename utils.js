@@ -1,33 +1,26 @@
-function getType(obj){
-    	
-    	var types = {
-    		'[object Object]' : 'object',
-    		'[object String]' :	'string',
-    		'[object Number]' : 'number',
-    		'[object Boolean]': 'boolean',
-    		'[object Function]':'function',
-    		'[object Undefined]': 'undefined',
-    		'[object Null]' : 'null',
-    		'[object Array]' : 'array',
-    		'[object Date]' : 'date',
-    		'[object RegExp]' : 'regExp'
-    	}
-    	
-    	return types[Object.prototype.toString.call(obj)]
-    }
-    
+
+//检测对象类型
+function objRawType (value) {
+  return Object.prototype.toString.call(value).slice(8, -1).toLowerCase();
+}
+
+//是否为对象
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object';
+}
+
+//对象克隆
 function deepclone(tag){
 	
 	if(!tag)return;
 	var res;
 	
-	//复杂类型递归
-	if(typeof tag == 'object'){
-		if(getType(tag) == 'object')res = {};
-		if(getType(tag) == 'array')res = [];
+	if(isObject(tag)){
+		if(objRawType(tag) == 'object')res = {};
+		if(objRawType(tag) == 'array')res = [];
 		for(key in tag){
 			
-			if(getType(tag[key]) == 'object'|| getType(tag[key]) == 'array'){
+			if(objRawType(tag[key]) == 'object'|| objRawType(tag[key]) == 'array'){
 				res[key] = deepclone(tag[key])
 			}else{
 				res[key] = tag[key]
@@ -39,3 +32,14 @@ function deepclone(tag){
 	
 	return res;
 }
+
+
+function bindData(data){
+	
+}
+
+
+function tempalteRender(){
+	
+}
+
