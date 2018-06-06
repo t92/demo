@@ -27,7 +27,7 @@ function deepclone(tag){
 			}
 		}
 	}else{
-		res = tag;
+		return tag;
 	}
 	
 	return res;
